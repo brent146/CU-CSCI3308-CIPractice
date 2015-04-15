@@ -48,6 +48,18 @@ bool coord_2d_eq(const coord_2d_t* a, const coord_2d_t* b){
 
 }
 
+double coord_2d_area_triangle(const coord_2d_t* a, const coord_2d_t* b, const coord_2d_t* c){
+    // Ax(By - Cy) + Bx(Cy - Ay) + Cx(Ay- By)
+    // -------------------------------------
+    //                  2
+    double result;
+
+    result = a->x * (b->y - c->y) + b->x * (c->y - a->y) + c->x * (a->y - b->y);
+    result = result >= 0 ? result : result * -1;
+    result = result / 2;
+    return result;
+}
+
 void coord_2d_midpoint(coord_2d_t* mid, const coord_2d_t* a, const coord_2d_t* b){
 
     /* Input Checks */
